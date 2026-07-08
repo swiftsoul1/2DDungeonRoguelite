@@ -4,15 +4,15 @@ public class Room
 {
     public int RoomNumber { get; private set; }
 
-    public List<Enemy> Enemies { get; private set; }
+    public List<LivingEntity> Enemies { get; private set; }
 
     public Room(int roomNumber)
     {
         RoomNumber = roomNumber;
-        Enemies = new List<Enemy>();
+        Enemies = new List<LivingEntity>();
     }
 
-    public void AddEnemy(Enemy enemy)
+    public void AddEnemy(LivingEntity enemy)
     {
         Enemies.Add(enemy);
     }
