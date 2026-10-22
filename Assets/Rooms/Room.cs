@@ -6,14 +6,28 @@ public class Room
 
     public List<LivingEntity> Enemies { get; private set; }
 
-    public Room(int roomNumber)
+    public RoomGrid Grid { get; private set; }
+    private readonly List<PropObject> props = new List<PropObject>();
+    public IReadOnlyList<PropObject> Props { get { return props; } }
+
+    public Room(int roomNumber, int width = 12, int height = 10)
     {
         RoomNumber = roomNumber;
+        Grid = new RoomGrid(width, height);
         Enemies = new List<LivingEntity>();
     }
 
-    public void AddEnemy(LivingEntity enemy)
+    public void AddNPC(LivingEntity npc)
     {
-        Enemies.Add(enemy);
+        if (!Grid.TryAdd(npc))
+            throw new System.InvalidOperationException("NPC cannot be placed at its grid position.");
+        Enemies.Add(npc);
+    }
+
+    public void AddProp(PropObject prop)
+    {
+        if (prop == null || prop is WallProp || !Grid.TryAdd(prop))
+            throw new System.InvalidOperationException("Prop cannot be placed at its grid position.");
+        props.Add(prop);
     }
 }

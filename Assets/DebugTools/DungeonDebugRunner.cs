@@ -12,7 +12,7 @@ public class DungeonDebugRunner : MonoBehaviour
 
         LivingEntity goblin = new Enemy("Goblin", 2, 3, 10, 3);
 
-        room.AddEnemy(goblin);
+        room.AddNPC(goblin);
 
         Debug.Log("Created player: " + player.Name + " HP: " + player.CurrentHealth);
         Debug.Log("Created room: " + room.RoomNumber);
